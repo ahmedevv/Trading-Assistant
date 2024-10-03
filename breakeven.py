@@ -1,13 +1,11 @@
 import MetaTrader5 as mt5
 import parameters
-RED = '\033[31m'
-GREEN = '\033[32m'
-RESET = '\033[0m' # called to return to standard terminal text color
-def OpenedPosition(Symbols):
+
+def OpenedPosition(Symbols,path,login,password,server):
     #print(RED + '----Managing the RR----' + RESET)
-    mt5.initialize(parameters.path,login=parameters.login,      
-   password=parameters.password,   
-   server=parameters.server)
+    mt5.initialize(path,login=login,      
+   password=password,   
+   server=server)
     for key,val in Symbols.items():
         position = mt5.positions_get(symbol=val)
         second_curr = val[3:-3]
