@@ -88,7 +88,7 @@ def getData(time_gap,timeframe,symbol,path,login,password,servername):
             if curr_time.month == timestamp.month:
                 df = df[:-1]
 
-        elif timeframe in ['M30','M15','5M','M1'] :
+        elif timeframe in ['M30','M15','M5','M1'] :
            
             if curr_time.minute == timestamp.minute:
                 df = df[:-1]
