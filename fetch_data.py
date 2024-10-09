@@ -90,7 +90,7 @@ def getData(time_gap,timeframe,symbol,path,login,password,servername):
 
         elif timeframe in ['M30','M15','5M','M1'] :
            
-            if curr_time.month == timestamp.month:
+            if curr_time.minute == timestamp.minute:
                 df = df[:-1]
 
 
@@ -105,6 +105,5 @@ def getData(time_gap,timeframe,symbol,path,login,password,servername):
 
     
 
-# Useage Example
-# df = getData(-4,'M5','EURUSDx','C:/Program Files/Metatrader 5/terminal64.exe',5466445487,'XCdd!!9855','NoorCapital-Server')
-# print(df)
+
+#df = getData(0,'H2','EURUSDx','C:/Program Files/Metatrader 5/terminal64.exe',5466445487,'XCdd!!9855','NoorCapital-Server')
