@@ -13,6 +13,7 @@ timeframe_dict = {
                     'W' : mt5.TIMEFRAME_W1,
                     'MN' : mt5.TIMEFRAME_MN1,
                     'H12' : mt5.TIMEFRAME_H12,
+                    'H6' : mt5.TIMEFRAME_H6,
                     'H4' : mt5.TIMEFRAME_H4,
                     'H2' : mt5.TIMEFRAME_H2,
                     'H1' : mt5.TIMEFRAME_H1,
@@ -53,7 +54,9 @@ def timezoneTranslation(time_gap):
         curr_time = curr_time + datetime.timedelta(hours=time_gap)
     elif time_gap < 0:
         curr_time = datetime.datetime.now()
+        
         curr_time = curr_time - datetime.timedelta(hours=abs(time_gap))
+        
     return curr_time
 
 
@@ -68,19 +71,19 @@ def getData(time_gap,timeframe,symbol,path,login,password,servername):
         df['time']  = pd.to_datetime(df['time'],unit='s')
         timestamp = df['time'].iloc[-1]
         curr_time = timezoneTranslation(time_gap)
-        print(curr_time)
+        
  
     # the name "GMT+2" is optional, the name does not appear in output of isoformat, only the offset
 
         
-        if timeframe in ['H12','H4','H2','H1']:  
-
+        if timeframe in ['H12','H4','H2','H1','H6']:  
+           
             if curr_time.hour == timestamp.hour:
                 df = df[:-1]
 
         elif timeframe in ['D','W']:
            
-            if curr_time.day == timestamp.day:
+            if curr_time.weekday() in [0,6] :
                 df = df[:-1]
 
         elif timeframe in ['MN'] :
@@ -105,5 +108,7 @@ def getData(time_gap,timeframe,symbol,path,login,password,servername):
 
     
 
+#Useage Example
 
-#df = getData(0,'H2','EURUSDx','C:/Program Files/Metatrader 5/terminal64.exe',5466445487,'XCdd!!9855','NoorCapital-Server')
+# df = getData(-7,'H2','EURUSDx','C:/Program Files/MT5-8/terminal64.exe',5466445487,'XCdd!!9855','NoorCapital-Server')
+# print(df)

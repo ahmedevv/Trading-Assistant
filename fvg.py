@@ -38,6 +38,7 @@ def identifyFVG(df):
                 low = df['low'].iloc[j-2]
                 date = df['time'].iloc[j]
                 direction = 'Bearish'
+                print('case 1')
 
                 break
 
@@ -50,6 +51,7 @@ def identifyFVG(df):
                 low = df['low'].iloc[j-2]
                 date = df['time'].iloc[j]
                 direction = 'Bearish' 
+                print('case 2')
                 break
         # check direction for this particular condition
         # Bearish - Bullish - Bearish
@@ -61,6 +63,7 @@ def identifyFVG(df):
                 low = df['low'].iloc[j]
                 date = df['time'].iloc[j]
                 direction = 'Bullish'
+                print('case 3')
                 break
         
         # Bearish - Bullish - Bullish
@@ -72,6 +75,7 @@ def identifyFVG(df):
                 low = df['low'].iloc[j]
                 date = df['time'].iloc[j]
                 direction = 'Bullish'
+                print('case 4')
                 break
         
 
@@ -84,6 +88,7 @@ def identifyFVG(df):
                 low = df['low'].iloc[j]
                 date = df['time'].iloc[j]
                 direction = 'Bullish'
+                print('case 5')
                 break
 
         # Bullish - Bearish - Bearish
@@ -95,6 +100,7 @@ def identifyFVG(df):
                 low = df['low'].iloc[j-2]
                 date = df['time'].iloc[j]
                 direction = 'Bearish'
+                print('case 6')
                 break
 
         # Bullish - Bullish - Bearish
@@ -106,6 +112,7 @@ def identifyFVG(df):
                 low = df['low'].iloc[j]
                 date = df['time'].iloc[j]
                 direction = 'Bullish'
+                print('case 7')
                 break
         
 
@@ -118,8 +125,27 @@ def identifyFVG(df):
                 low = df['low'].iloc[j-2]
                 date = df['time'].iloc[j]
                 direction = 'Bearish'
+                print('case 8')
                 break
     if high < low:
         high , low = low , high
     
     return fvg_flag,fvg_candle,high,low,direction,date
+
+
+
+
+
+
+
+
+
+# df = pd.DataFrame(columns=['time','open','high','low','close'])
+# df['time'] = ['2024-10-16 06:00:00','2024-10-16 08:00:00','2024-10-16 10:00:00']
+# df['open'] = [19426.6,19437.6,19480.6]
+# df['high'] = [19453.60,19483.60,19515.60]
+# df['low'] = [19407.6,19436.6,19474.6]
+# df['close'] = [19437.60,19480.60,19501.60]        
+# print(df) 
+# fvg_flag,fvg_candle,high,low,direction,date = identifyFVG(df)  
+# print(fvg_flag)               
