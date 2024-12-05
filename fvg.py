@@ -27,7 +27,10 @@ def identifyFVG(df):
     date = ''
     for j in range(2,len(df)):
         
-        
+        print((df['open'].iloc[j-2] - df['close'].iloc[j-2]))
+        print((df['open'].iloc[j-1] - df['close'].iloc[j-1]))
+        print((df['open'].iloc[j] - df['close'].iloc[j]))
+        print((df['high'].iloc[j-2] - df['low'].iloc[j]))
         #
         # Bearish - Bearish - Bullish
         if (df['open'].iloc[j-2] - df['close'].iloc[j-2]) > 0 and (df['open'].iloc[j-1] - df['close'].iloc[j-1]) > 0 and (df['open'].iloc[j] - df['close'].iloc[j]) < 0: 
@@ -118,7 +121,7 @@ def identifyFVG(df):
 
         # Bullish - Bearish - Bullish
         elif (df['open'].iloc[j-2] - df['close'].iloc[j-2]) < 0 and (df['open'].iloc[j-1] - df['close'].iloc[j-1]) > 0 and (df['open'].iloc[j] - df['close'].iloc[j]) < 0:
-            if (df['high'].iloc[j-2] - df['low'].iloc[j]) < 0:
+            if (df['high'].iloc[j] - df['low'].iloc[j-2]) < 0:
                 fvg_flag = True
                 fvg_candle = df.iloc[j-2] 
                 high = df['high'].iloc[j]
@@ -142,10 +145,10 @@ def identifyFVG(df):
 
 # df = pd.DataFrame(columns=['time','open','high','low','close'])
 # df['time'] = ['2024-10-16 06:00:00','2024-10-16 08:00:00','2024-10-16 10:00:00']
-# df['open'] = [19426.6,19437.6,19480.6]
-# df['high'] = [19453.60,19483.60,19515.60]
-# df['low'] = [19407.6,19436.6,19474.6]
-# df['close'] = [19437.60,19480.60,19501.60]        
+# df['open'] = [1.62362,1.62883,1.61682]
+# df['high'] = [1.63269,1.63036,1.62112]
+# df['low'] = [1.62349,1.61487,1.61331]
+# df['close'] = [1.62924,1.61731,1.62025]        
 # print(df) 
 # fvg_flag,fvg_candle,high,low,direction,date = identifyFVG(df)  
 # print(fvg_flag)               

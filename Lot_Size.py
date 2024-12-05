@@ -38,7 +38,7 @@ def calculate_lot_size(symbol,order_type,balance,stoploss,open_price,risk_pct):
             lotSize = risked / (SL*gold_contract)
             lot = float("{:.2f}".format(lotSize))
             
-          elif symbol in ['UT100Roll','US30Roll','DE40Roll','UK100Roll','UT100Roll']:
+          elif symbol in ['UT100Roll','US30Roll','DE40Roll','UK100Roll','US500Roll']:
             SL = (open_price - stoploss) 
             lotSize = risked / (SL*index_contract)
             lot = float("{:.1f}".format(lotSize))
@@ -106,5 +106,6 @@ def calculate_lot_size(symbol,order_type,balance,stoploss,open_price,risk_pct):
 
 
 
-
+# x = calculate_lot_size('AUDJPY.sd','Buy',97302,99.990,100.542,0.25)
+# print(x)
 
